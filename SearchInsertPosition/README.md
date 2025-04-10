@@ -52,3 +52,26 @@ You must implement an algorithm with **O(log n)** runtime complexity.
    - Otherwise, return `len(nums)` — insert at the end.
 
 📝 Note: While this approach works for small inputs, it is a linear search (O(n)) and **does not meet the O(log n)** requirement as specified in the problem. A binary search should be used for full compliance.
+
+
+## Algorithm 2
+
+1. Initialize two pointers:
+   - `low = 0` — the start of the search range
+   - `high = len(nums) - 1` — the end of the search range
+
+2. Perform binary search using a while loop:
+   - While `low <= high`:
+     - Compute the middle index: `mid = (low + high) // 2`
+     - If `nums[mid] == target`, return `mid` (target found)
+     - If `nums[mid] > target`, reduce the search range to the left half by setting `high = mid - 1`
+     - If `nums[mid] < target`, search in the right half by setting `low = mid + 1`
+
+3. If the loop ends without finding the target, return `low`
+   - This is the correct index where `target` would be inserted to maintain sorted order
+
+### Time Complexity
+- **O(log n)** due to binary search
+
+### Space Complexity
+- **O(1)** — constant extra space used
